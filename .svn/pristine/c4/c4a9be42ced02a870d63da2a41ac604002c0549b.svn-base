@@ -1,0 +1,235 @@
+package com.bugfree.model.supplier;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
+import com.bugfree.model.address.Address;
+import com.bugfree.model.status.Status;
+import com.bugfree.model.supplier.shop.SupplierShop;
+
+@Entity
+@Table(name="supplier")
+public class Supplier {
+
+	@Id
+	@GeneratedValue
+	private int supplierId;
+	
+//	private String firstName;
+//	private String middleName;
+//	private String lastName;
+	private String fullName;
+	private int otp;
+	
+	@Type(type="date")
+	private Date otpSessionDate;
+ 
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address;
+	
+	private String storeType;
+	
+	@OneToOne
+	@JoinColumn(name="supplier_shop_id")
+	private SupplierShop supplierShop;
+	
+	private boolean serviceProvider;
+	
+	@Column(unique=true)
+	private String uniqueStoreName;
+	
+	
+	private String contactNo;
+	private String emailId;
+	@Column(length=1200)
+	private String password;
+	@Column(length=1200)
+	private String salt;
+	private String imagePath;
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
+	@OneToOne
+	@JoinColumn(name="status_id")
+	private Status status;
+	
+	@Type(type="date")
+	private Date createdDate;
+	
+	@PrePersist
+	protected void onCreate() {
+	    createdDate = new Date();
+	    
+	  }
+
+
+	
+	public int getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(int supplierId) {
+		this.supplierId = supplierId;
+	}
+	
+	
+	
+	public int getOtp() {
+		return otp;
+	}
+
+	public void setOtp(int otp) {
+		this.otp = otp;
+	}
+
+	public Date getOtpSessionDate() {
+		return otpSessionDate;
+	}
+
+	public void setOtpSessionDate(Date otpSessionDate) {
+		this.otpSessionDate = otpSessionDate;
+	}
+
+	public SupplierShop getSupplierShop() {
+		return supplierShop;
+	}
+
+	public void setSupplierShop(SupplierShop supplierShop) {
+		this.supplierShop = supplierShop;
+	}
+
+//	public String getFirstName() {
+//		return firstName;
+//	}
+//
+//	public void setFirstName(String firstName) {
+//		this.firstName = firstName;
+//	}
+//
+//	public String getMiddleName() {
+//		return middleName;
+//	}
+//
+//	public void setMiddleName(String middleName) {
+//		this.middleName = middleName;
+//	}
+//
+//	public String getLastName() {
+//		return lastName;
+//	}
+//
+//	public void setLastName(String lastName) {
+//		this.lastName = lastName;
+//	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	
+
+	public String getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getStoreType() {
+		return storeType;
+	}
+
+	public void setStoreType(String storeType) {
+		this.storeType = storeType;
+	}
+
+	public boolean isServiceProvider() {
+		return serviceProvider;
+	}
+
+	public void setServiceProvider(boolean serviceProvider) {
+		this.serviceProvider = serviceProvider;
+	}
+
+	public String getUniqueStoreName() {
+		return uniqueStoreName;
+	}
+
+	public void setUniqueStoreName(String uniqueStoreName) {
+		this.uniqueStoreName = uniqueStoreName;
+	}
+
+	
+	
+
+	
+}

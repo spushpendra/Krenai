@@ -1,0 +1,54 @@
+package com.bugfree.common;
+
+import java.net.InetAddress;
+
+public class KrenaiCONSTANTS {
+
+	public static String sellerContext = "localhost:3333/seller";
+	public static String errorDisplay="ErrorMessageDisplay";
+	public static String productAddedSuccessMessage="Product is Successfully Added";
+	public static String userApplication="http://localhost:3333/user";
+	public static String sellerApplication="http://localhost:4444/seller";
+	public static String productDefaultImage="http://localhost:4444/user/assets/img/2.jpg";
+	public static int nearestDistance=10;
+	public static String india = "India";
+	public static String blockedByKrenai = "blockedByKrenai";
+	public static String loggedOutStatus = "loggedoutstatus";
+	public static String activeStatus = "active";
+	public static String inactiveStatus = "inactive";
+	public static String pendingStatus = "pending";
+	public static String rejectStatus = "rejected";
+	
+	
+	public static String userNotificationEmail = "email";
+	public static String userNotificationMobile = "mobile";
+	
+	
+	public static String status_debutLogin = "debutLogin";
+	public static String status_debutLoginWithoutAddress = "debutLoginWithoutAddress";
+	
+	public static String accessPermission_public = "public";
+	public static String feedLiked = "liked";
+	public static String feedCommented = "commented";
+	public static String feedShared = "shared";
+	public static String friendRequest = "friend_request";
+	public static String send = "sends";
+	public static String responded = "responded";
+	public static String friendStatusValue = "friend";
+	public static String friendRequestAccepted = "accepted";
+	public static String friendRequestRequested = "requested";
+	public static String supplierFollowing = "following";
+	public static String status_removed = "removed";
+	public static String orderOrdered = "ordered";
+	public static String ordercancelled = "cancelled";
+	public static String orderOutForDelivery = "outForDelivery";
+	public static String orderDelivered = "delivered";
+	public static String orderInprocess = "inprocess";
+	public static String orderReturned = "returned";
+	public static String supplierFeedForFollowers = "followers";
+	public static String feedforPublic = "public";
+	public static String bookmarkRequested = "requested";
+	public static String elasticIP = "192.168.0.21";
+	
+	
+}

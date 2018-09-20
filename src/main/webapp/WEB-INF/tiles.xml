@@ -1,0 +1,40 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <!-- Master -->
+    <definition name="master.page" template="/public/template/master.jsp">
+        <put-attribute name="header" value="/public/template/header.jsp"/>
+        <put-attribute name="sidebar" value="/public/template/sidebar.jsp"/>
+        <put-attribute name="footer" value="/public/template/footer.jsp"/>
+    </definition>
+	 <!-- Unauthorized Error Page -->
+	<definition name="UnauthErrorPage" extends="master.page">
+		<put-attribute name="body" value="/protected/UnauthErrorPage.jsp"/>
+		<put-attribute name="header" value="/public/template/header.jsp"/>
+        <put-attribute name="sidebar" value="/public/template/sidebar.jsp"/>
+    </definition>
+    
+
+     <definition name="master" template="index.jsp">
+    
+    </definition>
+
+    
+    <definition name="loginuser" extends="master">
+        <put-attribute name="body" value="/index1.html"/>
+    </definition>
+    
+   <definition name="assignpermission" extends="master.page">
+        <put-attribute name="body" value="/protected/security/assigngrouppermission.jsp"/>
+    </definition>
+    <definition name="login" extends="master.page">
+        <put-attribute name="header" value=""/>
+        <put-attribute name="footer" value=""/>
+        <put-attribute name="sidebar" value=""/>
+        <put-attribute name="body" value="/public/login.jsp"/>
+    </definition>
+    	
+
+</tiles-definitions>
+

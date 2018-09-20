@@ -1,0 +1,76 @@
+package com.bugfree.common.es.core;
+
+import java.net.InetSocketAddress;
+
+import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+
+import com.bugfree.common.KrenaiCONSTANTS;
+
+@Configuration
+@EnableElasticsearchRepositories(basePackages = "org/springframework/data/elasticsearch/repositories")
+public class ElasticsearchTemplates {
+	
+/*	public ElasticsearchTemplate est=null;
+	public Client client = null;
+
+	public ElasticsearchTemplates(){
+		ConfigNew cc = new ConfigNew();
+		//this.est = (ElasticsearchTemplate) cc.elasticsearchTemplate();
+		cc.elasticsearchTemplate();
+		this.client = cc.client();
+	}
+	
+	
+	     static class ConfigNew {
+		TransportClient client = TransportClient.builder()
+			       .settings(Settings.builder()
+			             .put("path.home", "/usr/share/elasticsearch")
+			             
+			       )
+			       .build();
+		
+	        @Value("${esearch.port}") int port;
+	        @Value("${esearch.host}") String hostname;
+
+		@Bean
+        public ElasticsearchOperations elasticsearchTemplate() {
+        	client();
+        return new ElasticsearchTemplate(client());
+         }
+		@Bean
+        public void elasticsearchTemplate() {
+        	client();
+        // return new ElasticsearchTemplate(client());
+         }
+
+	        @Bean
+	        public Client client(){
+	        	InetSocketAddress id = null;
+	        	try {
+	        		id = new InetSocketAddress("54.186.93.53", 9300);
+	        		System.out.println("********************54.186.93.53****************");
+					
+				} catch (Exception e) {
+					System.out.println("**********************exception******************");
+					e.printStackTrace();
+				}
+	        	if(id.isUnresolved()){
+	        		System.out.println("**********************if elastic******************");
+					this.client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress(KrenaiCONSTANTS.elasticIP, 9300)));
+	        	}
+	        	else{
+	        		System.out.println("**********************else elastic******************");
+					this.client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress("54.186.93.53", 9300)));
+	        	}
+	        	return client;
+	        }
+	   }*/
+}

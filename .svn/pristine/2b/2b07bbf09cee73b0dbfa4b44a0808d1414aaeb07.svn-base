@@ -1,0 +1,120 @@
+package com.bugfree.model.payment;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.bugfree.model.payment.packages.MontlySubscriptionPackage;
+import com.bugfree.model.status.Status;
+import com.bugfree.model.supplier.Supplier;
+
+//import com.bugfree.model.payment.packages.MontlySubscriptionPackage;
+//import com.bugfree.model.supplier.Supplier;
+
+@Entity
+@Table(name="krenai_payment")
+public class KrenaiPayment {
+
+	@Id
+	@GeneratedValue
+	private int krenaiPaymentId;
+	
+	@ManyToOne
+	@JoinColumn(name="montly_subscription_package_id")
+	private MontlySubscriptionPackage montlySubscriptionPackage;
+	
+	private String month;
+	private int year;
+	
+	private int paidAmount;
+	
+	@ManyToOne
+	@JoinColumn(name="supplier_id")
+	private Supplier supplier;
+	
+	private String paymentDate;
+	
+	private String expiryDate;
+
+	@ManyToOne
+	@JoinColumn(name="status")
+	private Status status;
+
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public int getPaidAmount() {
+		return paidAmount;
+	}
+
+	public void setPaidAmount(int paidAmount) {
+		this.paidAmount = paidAmount;
+	}
+
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public int getKrenaiPaymentId() {
+		return krenaiPaymentId;
+	}
+
+	public void setKrenaiPaymentId(int krenaiPaymentId) {
+		this.krenaiPaymentId = krenaiPaymentId;
+	}
+
+	public MontlySubscriptionPackage getMontlySubscriptionPackage() {
+		return montlySubscriptionPackage;
+	}
+
+	public void setMontlySubscriptionPackageId(MontlySubscriptionPackage montlySubscriptionPackage) {
+		this.montlySubscriptionPackage = montlySubscriptionPackage;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	
+}

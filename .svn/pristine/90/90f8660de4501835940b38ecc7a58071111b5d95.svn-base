@@ -1,0 +1,165 @@
+package com.bugfree.model.cart;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
+import com.bugfree.model.status.Status;
+import com.bugfree.model.supplier.Supplier;
+import com.bugfree.model.user.User;
+import com.bugfree.model.user.UserAddressBook;
+
+@Entity
+@Table(name="cart")
+public class Cart {
+
+	@Id
+	@GeneratedValue
+	private int cartId;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	/*
+	 * active -> ordered -> processing -> outfordelivery -> delivered
+	 * 			                       -> cancelled 	 -> returned
+	 */
+	
+	@ManyToOne
+	@JoinColumn(name="status_id")
+	private Status status;
+	private String orderId;
+	private String orderDate;
+	private String userRequiredTime;
+	private String userRequiredDate;
+	@Type(type="timestamp")
+	private Date deliveredTime;
+	private String deliveredByAgentBoy;
+	private String remarks;
+	@Column(length=1000)
+	private String cancellationReason;
+	
+	@Type(type="timestamp")
+	private Date statusInProcessDate;
+	@Type(type="timestamp")
+	private Date statusOutForDeliveryDate;
+	
+	@Type(type="timestamp")
+	private Date statusReturnedDate;
+	
+	@ManyToOne
+	@JoinColumn(name="supplier_Id")
+	private Supplier supplier;
+	
+	@ManyToOne
+	@JoinColumn(name="user_address_book_id")
+	private UserAddressBook userAddressBookId;
+	
+	public String getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	public int getCartId() {
+		return cartId;
+	}
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	public Supplier getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+	public String getUserRequiredTime() {
+		return userRequiredTime;
+	}
+	public void setUserRequiredTime(String userRequiredTime) {
+		this.userRequiredTime = userRequiredTime;
+	}
+	
+	public Date getDeliveredTime() {
+		return deliveredTime;
+	}
+	public void setDeliveredTime(Date deliveredTime) {
+		this.deliveredTime = deliveredTime;
+	}
+	public String getDeliveredByAgentBoy() {
+		return deliveredByAgentBoy;
+	}
+	public void setDeliveredByAgentBoy(String deliveredByAgentBoy) {
+		this.deliveredByAgentBoy = deliveredByAgentBoy;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public UserAddressBook getUserAddressBookId() {
+		return userAddressBookId;
+	}
+	public void setUserAddressBookId(UserAddressBook userAddressBookId) {
+		this.userAddressBookId = userAddressBookId;
+	}
+	public String getUserRequiredDate() {
+		return userRequiredDate;
+	}
+	public void setUserRequiredDate(String userRequiredDate) {
+		this.userRequiredDate = userRequiredDate;
+	}
+	public String getCancellationReason() {
+		return cancellationReason;
+	}
+	public void setCancellationReason(String cancellationReason) {
+		this.cancellationReason = cancellationReason;
+	}
+	public Date getStatusInProcessDate() {
+		return statusInProcessDate;
+	}
+	public void setStatusInProcessDate(Date statusInProcessDate) {
+		this.statusInProcessDate = statusInProcessDate;
+	}
+	public Date getStatusOutForDeliveryDate() {
+		return statusOutForDeliveryDate;
+	}
+	public void setStatusOutForDeliveryDate(Date statusOutForDeliveryDate) {
+		this.statusOutForDeliveryDate = statusOutForDeliveryDate;
+	}
+	public Date getStatusReturnedDate() {
+		return statusReturnedDate;
+	}
+	public void setStatusReturnedDate(Date statusReturnedDate) {
+		this.statusReturnedDate = statusReturnedDate;
+	}
+	
+	
+}

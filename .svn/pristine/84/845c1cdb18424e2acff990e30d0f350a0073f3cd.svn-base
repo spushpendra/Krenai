@@ -1,0 +1,14 @@
+package com.bugfree.repository.payment;
+
+import java.util.List;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+import com.bugfree.model.payment.KrenaiPayment;
+import com.bugfree.model.supplier.Supplier;
+
+public interface KrenaiPaymentRepository extends PagingAndSortingRepository<KrenaiPayment, Integer> {
+
+	List<KrenaiPayment> findBySupplier(Supplier supplier);
+
+}

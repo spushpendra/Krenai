@@ -1,0 +1,35 @@
+.days{
+	padding: 0px;
+	margin: 0px;   
+}
+.days li{
+	margin-left: 8px;
+	list-style: none;
+	display: inline-block;
+}
+ .trx-py-text{
+	font-size: 22px;
+	font-weight: 500;
+	color: #636363;
+}
+.icons .icon-set i{
+	color: #e91e63 !important;
+}
+.trx-head-lst ul{
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+.trx-head-lst li p{
+	list-style: none;
+	font-weight: 500;
+	color: #2196F3;
+}
+.trx-nm{
+	max-width: 250px;
+}
+.trx-user-image{
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+}

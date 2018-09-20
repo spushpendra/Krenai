@@ -1,0 +1,51 @@
+package com.bugfree.model.payment.packages;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="krenai_monthly_subscription_package")
+public class MontlySubscriptionPackage {
+
+	@Id
+	@GeneratedValue
+	private int montlySubscriptionPackageId;
+	
+	private int packageAmount;
+	
+	@Column(length=800)
+	private String packageDescription;
+	
+	@Column(unique=true)
+	private String packageName;
+	
+	public int getMontlySubscriptionPackageId() {
+		return montlySubscriptionPackageId;
+	}
+	public void setMontlySubscriptionPackageId(int montlySubscriptionPackageId) {
+		this.montlySubscriptionPackageId = montlySubscriptionPackageId;
+	}
+	public int getPackageAmount() {
+		return packageAmount;
+	}
+	public void setPackageAmount(int packageAmount) {
+		this.packageAmount = packageAmount;
+	}
+	public String getPackageDescription() {
+		return packageDescription;
+	}
+	public void setPackageDescription(String packageDescription) {
+		this.packageDescription = packageDescription;
+	}
+	public String getPackageName() {
+		return packageName;
+	}
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
+	
+	
+}

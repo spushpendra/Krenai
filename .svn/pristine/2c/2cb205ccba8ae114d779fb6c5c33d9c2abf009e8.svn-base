@@ -1,0 +1,128 @@
+package com.bugfree.controller.free_access.restful.android;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.bugfree.common.GenerateRandomString;
+import com.bugfree.common.validate.ValidatePassword;
+import com.bugfree.controller.free_access.restful.android.service.AndroidControllerService;
+import com.bugfree.model.inventory.store.Store;
+import com.bugfree.model.status.Status;
+import com.bugfree.model.supplier.Supplier;
+import com.bugfree.model.supplier.android.SupplierLoginSession;
+import com.bugfree.repository.admin.util.DuplicateEmailRequestRepository;
+import com.bugfree.repository.supplier.android.SupplierLoginSessionRepository;
+import com.bugfree.service.address.AddressService;
+import com.bugfree.service.encrypt.EncryptService;
+import com.bugfree.service.inventory.store.StoreFeatureService;
+import com.bugfree.service.inventory.store.StoreService;
+import com.bugfree.service.status.StatusService;
+import com.bugfree.service.supplier.SupplierService;
+import com.bugfree.service.supplier.shop.SupplierShopService;
+import com.bugfree.service.user.UserService;
+
+@Controller
+public class RestfulController {
+	
+	@Autowired
+	private  StatusService statusService;
+
+	@Autowired
+	private SupplierService supplierService;
+	@Autowired
+	private AddressService addressService;
+	@Autowired
+	private SupplierShopService supplierShopService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private EncryptService encryptService;
+	@Autowired
+	private AndroidControllerService androidControllerService;
+	@Autowired
+	private  SupplierLoginSessionRepository supplierLoginSessionRepository;
+	@Autowired
+	private StoreService storeService;
+	@Autowired
+	private DuplicateEmailRequestRepository duplicateEmailRequestRepository;
+	@Autowired
+	private StoreFeatureService storeFeatureService;
+	
+	@RequestMapping(value="/application-json/android/user/supplier/generate-login-session")
+	private @ResponseBody  Map<String, Map<String, String>> generateLoginSession(
+			@RequestParam(value="username",required=true) String email, 
+			@RequestParam(value="password", required=true) String password,
+			HttpServletRequest request){
+		
+		
+		Map<String,String> map = new HashMap<String,String>();
+		Map<String,Map<String,String>> mapMap = new HashMap<String,Map<String,String>>();
+		Supplier supplier = supplierService.findByEmailId(email);
+		
+		if(supplier==null){
+			map.put("status", "Email ID doesn't exist.");
+			mapMap.put("supplierDetails", map);
+			return mapMap;
+		}
+		
+		boolean value = ValidatePassword.checkPassword(supplier, password);
+		
+		if (value==true){
+			Status status = statusService.findByStatusValue("active");
+			
+			androidControllerService.removeEarlierActiveSession(supplier,status);
+			
+			SupplierLoginSession loginSession = new SupplierLoginSession();
+			loginSession.setSupplier(supplier);
+			loginSession.setStatus(status);
+			String sessionId = GenerateRandomString.generateHexString(32);
+			loginSession.setSessionId(sessionId);
+			supplierLoginSessionRepository.save(loginSession);
+			map.put("supplierName", supplier.getFullName());
+			map.put("status", "success");
+			map.put("emailId", supplier.getEmailId());
+			map.put("profileImage", supplier.getImagePath());
+			map.put("sessionID", sessionId);
+			map.put("mobile", supplier.getContactNo());
+			map.put("header", supplier.getSupplierShop().getShopTheme());
+			map.put("type", supplier.isServiceProvider()+"");
+			map.put("shopName", supplier.getSupplierShop().getShopName());
+			mapMap.put("userDetails", map);
+			return mapMap;
+		}
+		
+		else{
+			map.put("status", "Password Wrong.");
+			mapMap.put("supplierDetails", map);
+			return mapMap;
+		}
+	}
+	
+	@RequestMapping(value="/application-json/android/user/supplier/registration/stores")
+	public @ResponseBody Map<String,Map<String,String>> getAllStores() {
+		
+		Iterable <Store> storeIterable=storeService.findAll();
+		Map<String,Map<String,String>> returnMap = new HashMap<String,Map<String,String>>();
+		Map<String,String> map =new HashMap<String,String>();
+		for(Store store : storeIterable){
+			map.put(String.valueOf(store.getStoreId()), store.getStoreType());
+			
+		}
+		returnMap.put("storeList", map);
+		return returnMap;
+
+	}		
+	
+	
+	
+	
+	
+}

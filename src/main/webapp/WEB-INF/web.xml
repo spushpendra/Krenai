@@ -1,0 +1,134 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<display-name>Archetype Web Application</display-name>
+
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>
+                        org.springframework.web.servlet.DispatcherServlet
+                </servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	
+
+<!-- shiro filter -->
+<filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+	
+
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>
+                   org.springframework.web.context.ContextLoaderListener
+                </listener-class>
+	</listener>
+
+	 <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+            /WEB-INF/spring/spring.xml
+        </param-value>
+  </context-param>
+  
+  
+  <context-param>
+  	<param-name>uploadProductFolderPath</param-name>
+  	<param-value>/assets/images/products</param-value>
+ </context-param>
+  
+  
+  <context-param>
+   <!-- show temporary product  uploaded images path  -->
+  	<param-name>showProductImgPath</param-name>
+  	<param-value>http://localhost:4444/seller/assets/images/products/</param-value>
+</context-param>
+
+	<context-param>
+  	<param-name>uploadCategoryFolderPath</param-name>
+  	<param-value>/assets/images/category</param-value>
+ </context-param>
+ 
+ <context-param>
+  	<param-name>showCategoryFolderPath</param-name>
+  	<param-value>http://localhost:4444/seller/assets/images/category</param-value>
+ </context-param>
+
+<context-param>
+  	<param-name>uploadSubCategoryFolderPath</param-name>
+  	<param-value>/assets/images/subcategory</param-value>
+ </context-param>
+ 
+ <context-param>
+  	<param-name>showSubCategoryFolderPath</param-name>
+  	<param-value>http://localhost:4444/seller/assets/images/subcategory</param-value>
+ </context-param>
+<context-param>
+  	<param-name>uploadDocumentPath</param-name>
+  	<param-value>/assets/images/documents</param-value>
+ </context-param>
+ 
+ <context-param>
+  	<param-name>showDocumentPathPan</param-name>
+  	<param-value>http://localhost:4444/seller/assets/images/documents/pancard</param-value>
+ </context-param>
+<context-param>
+  	<param-name>showDocumentPathTin</param-name>
+  	<param-value>http://localhost:4444/seller/assets/images/documents/tin</param-value>
+ </context-param>
+<context-param>
+  	<param-name>showDocumentPathAddress</param-name>
+  	<param-value>http://localhost:4444/seller/assets/images/documents/address</param-value>
+ </context-param>
+
+<context-param>
+  	<param-name>sellerContextPath</param-name>
+  	<param-value>http://localhost:4444/seller</param-value>
+ </context-param>
+ <context-param>
+  	<param-name>themeImageToSave</param-name>
+  	<param-value>http://localhost:4444/seller/assets/images/custom_shop_theme</param-value>
+ </context-param>
+ 
+ <context-param>
+  	<param-name>uploadTheme</param-name>
+  	<param-value>/assets/images/custom_shop_theme</param-value>
+ </context-param>
+ 
+ <context-param>
+    <param-name>uploadTheme</param-name>
+    <param-value>/assets/images/custom_shop_theme/themeImages</param-value>
+ </context-param>
+
+ <context-param>
+    <param-name>uploadSupplierImage</param-name>
+    <param-value>/assets/images/supplier/tempSupplier</param-value>
+ </context-param>
+ 
+  <context-param>
+    <param-name>supplierProductImages</param-name>
+    <param-value>/assets/images/products/tempProductsImages</param-value>
+ </context-param>
+	
+</web-app>
