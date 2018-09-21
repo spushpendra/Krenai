@@ -2,7 +2,7 @@
 <Context>
       
          <!--  <ResourceLink global="jdbc/tomcatDataSource" name="jdbc/tomcatDataSource"/> -->
-      <Resource
+       <Resource
             factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
             name="jdbc/tomcatDataSource"
             auth="Container"
@@ -21,7 +21,7 @@
             numTestsPerEvictionRun="5"
             timeBetweenEvictionRunsMillis="30000"
             minEvictableIdleTimeMillis="60000"
-            url="jdbc:mysql://krenaidb.cleidzf2qi8t.ap-south-1.rds.amazonaws.com:3306/krenaitest" /> 
+            url="jdbc:mysql://krenaidb.cleidzf2qi8t.ap-south-1.rds.amazonaws.com:2308/krenai" />
 
 
    <!--  <ResourceLink global="jdbc/tomcatDataSource" name="jdbc/tomcatDataSource"/> -->
